@@ -91,7 +91,6 @@ function getReviewByIndex(reviews, index) {
   return `${reviews[index].name} gave the restaurant a ${reviews[index].rating}, and their feedback was: ${reviews[index].feedback}`;
 }
 
-console.log(getReviewByIndex(reviews, 0));
 
 /* Task 7: Write a function to get information about the most recent review called `getLastReview`
 
@@ -106,7 +105,6 @@ function getLastReview(arr) {
         return `${arr[arr.length -1].name} gave the restaurant a ${arr[arr.length -1].rating}, and their feedback was: ${arr[arr.length -1].feedback}`;
     } 
 
-console.log(getLastReview(reviews));
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
 /** STRETCH 1: Write a function called `getReviewByRating` that returns an array containing all reviews in a certain range. Your function should accept: 
@@ -121,12 +119,18 @@ console.log(getLastReview(reviews));
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+function getReviewByRating(arr, cust_rating) {
+  let reviewsArr = [];
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i].rating >= cust_rating && arr[i].rating < (cust_rating + 1)){
+      reviewsArr.push(arr[i]);
+    }
   }
+  return reviewsArr;
+}
 
   
-/** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words. 
+/** STRETCH 2: Write a function called 'getLongReviews' that returns an array containing all reviews longer than 15 words. 
   
 Your function should accept: 
 
@@ -139,10 +143,19 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-  function getLongReviews(/* code here */) {
-    /* code here */
+  function getLongReviews(arr) {
+    let count = 0;
+    let long = [];
+    for(i = 0; i < arr.length; i++){
+      count = arr[i].feedback.split(' ').length;
+    if(count > 15){
+      long.push(arr[i]);
+    }
   }
+  return long;
+}
   
+console.log(getLongReviews(reviews));
 
 /* STRETCH 3:  This challenge is not related to the data above! 
 
@@ -162,7 +175,16 @@ The returned object should have the following characteristics:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(num) {
+    object = {
+      odometer: num,
+      drive: function(dist){
+        this.odometer = num + dist;
+        return this;
+      }
+    }
+    return object;
 }
+
+
+console.log(carMaker(5));
